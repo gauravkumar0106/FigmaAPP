@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Figma.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -18,8 +20,8 @@ namespace DatingApp.API.Controllers
         {
             _context = context;
         }
-        // GET api/values
-        [HttpGet]
+        // GET api/employees
+        [HttpGet("employees")]
         public async  Task<IActionResult> GetEmployees()
         {
             var employees = await _context.Employees.ToListAsync();
