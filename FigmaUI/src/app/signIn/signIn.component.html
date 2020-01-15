@@ -1,0 +1,29 @@
+
+<div *ngIf="loggedIn()">
+  <a>
+    Welcome User
+  </a>
+
+<button class="btn btn-secondary" (click)="logout()">LogOut</button>
+</div>
+<form *ngIf="!loggedIn()" #loginForm = "ngForm" (ngSubmit) = "login()" class="form-signin">
+  
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" required [(ngModel)]="model.username" #username="ngModel" name="username" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+  <label for="inputPassword"  class="sr-only">Password</label>
+  <input type="password" id="inputPassword" required name="password" #password="ngModel" [(ngModel)]="model.password" class="form-control" placeholder="Password" required="">
+  
+  <button class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.valid" type="submit">Sign in</button>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="registerToggle()">Register</button>
+</form>
+
+<div *ngIf="registerMode" class="container">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <app-register (cancelRegister)= "cancelRegisterMode($event)"></app-register>
+    </div>
+  </div>
+</div>
+
+
