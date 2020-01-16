@@ -1,21 +1,30 @@
 
-<div *ngIf="loggedIn()">
+<!-- <div *ngIf="loggedIn()">
   <a>
-    Welcome User
+    Welcome {{authService.decodeToken?.unique_name | titlecase}}
   </a>
 
 <button class="btn btn-secondary" (click)="logout()">LogOut</button>
-</div>
+</div> -->
+
+<div 
+style="width: 700px;
+height: 700px;margin-left: 260px;">
+
 <form *ngIf="!loggedIn()" #loginForm = "ngForm" (ngSubmit) = "login()" class="form-signin">
   
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" required [(ngModel)]="model.username" #username="ngModel" name="username" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+  <h1 class="h3 mb-3 font-weight-normal" style="width: 300px;margin-left: 220px;">Please sign in</h1>
+  <label for="username" class="sr-only">Username</label>
+  <input type="email" style="width: 300px;margin-left: 220px;" required [(ngModel)]="model.username" #username="ngModel" name="username" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
+  <br>
   <label for="inputPassword"  class="sr-only">Password</label>
-  <input type="password" id="inputPassword" required name="password" #password="ngModel" [(ngModel)]="model.password" class="form-control" placeholder="Password" required="">
+  <input type="password" style="width: 300px;margin-left: 220px;" id="inputPassword" required name="password" #password="ngModel" [(ngModel)]="model.password" class="form-control" placeholder="Password" required="">
+  <br>
+  <div style="width: 300px;">
+    <button class="btn btn-lg btn-primary btn-block" style="width: 140px;margin-left: 220px;" [disabled]="!loginForm.valid" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" style="width: 140px;margin-left: 220px;" type="submit" (click)="registerToggle()">Register</button>
+  </div>
   
-  <button class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.valid" type="submit">Sign in</button>
-  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="registerToggle()">Register</button>
 </form>
 
 <div *ngIf="registerMode" class="container">
@@ -24,6 +33,7 @@
       <app-register (cancelRegister)= "cancelRegisterMode($event)"></app-register>
     </div>
   </div>
+</div>
 </div>
 
 

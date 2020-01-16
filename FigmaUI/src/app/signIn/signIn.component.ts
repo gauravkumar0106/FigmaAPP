@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'signIn',
@@ -9,28 +10,28 @@ import { AuthService } from '../_services/auth.service';
 export class SignInComponent implements OnInit {
   model: any = {};
   registerMode = false;
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.authService.login(this.model).subscribe(next =>{
+    this.authService.login(this.model).subscribe(next => {
       console.log('Logged in succesfully');
-    },error =>{
+      this.router.navigate(['/memberslist']);
+    }, error => {
       console.log('Failed to Login');
     });
   }
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    console.log('logged out');
-  }
+  // logout() {
+  //   localStorage.removeItem('token');
+  //   console.log('logged out');
+  // }
 
   registerToggle() {
     this.registerMode = !this.registerMode;
