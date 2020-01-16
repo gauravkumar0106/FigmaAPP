@@ -9,20 +9,25 @@ import { MembersServiceService } from '../_services/membersService.service';
   styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
-  employees;
+  employees: any = {};
 
   constructor(public authService: AuthService,
               private router: Router,
               private memeberService: MembersServiceService) { }
 
   ngOnInit() {
-   this.memeberService.getEmployees().subscribe(res => {
-    this.employees = res;
-    console.log(res);
-   }
-    );
+    this.loadEmp();
   }
 
+
+  loadEmp()
+  {
+    this.memeberService.getEmployees().subscribe(res => {
+      this.employees = res;
+      console.log(res);
+     }
+      );
+  }
   signOut() {
     localStorage.removeItem('token');
     this.router.navigate(['/sign']);
@@ -33,7 +38,7 @@ export class MemberListComponent implements OnInit {
     console.log(empId);
     if(!confirm('Are you sure you want to delete this employee?')) return;
     this.memeberService.deleteEmployee(empId).subscribe(res=>this.router.navigate(['/memberslist']));
-    this.router.navigate(['/memberslist']);
+    this.loadEmp();
   }
 
 }

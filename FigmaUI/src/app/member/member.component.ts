@@ -10,6 +10,7 @@ import { MembersServiceService } from '../_services/membersService.service';
 })
 export class MemberComponent implements OnInit {
  employee ={};
+ buttonText = 'Save';
   id;
 
   constructor(private route: ActivatedRoute,
@@ -22,6 +23,8 @@ export class MemberComponent implements OnInit {
        this.memeberService.getEmployee(this.id)
        .pipe(take(1))
        .subscribe(res =>this.employee=res);
+
+       this.buttonText = 'Update';
     }
   }
 

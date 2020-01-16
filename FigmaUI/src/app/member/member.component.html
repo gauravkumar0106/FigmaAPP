@@ -1,5 +1,6 @@
-
-<div class="row">
+<app-navbar></app-navbar>
+<br><br>
+<div style="margin-left: 370px;" class="row">
   <div class="col-md-6">
     <form #f="ngForm" (ngSubmit)="save(f.value)">
         <div class="form-group">
@@ -8,7 +9,8 @@
           <div class="alert alert-danger" *ngIf="empName.touched && empName.invalid">
             Employee Name is required.
           </div>
-        </div>        
+        </div>   
+         
         <div class="form-group">
           <label for="empDesignation">Employee Designation</label>
           <div class="input-group">
@@ -33,8 +35,18 @@
             <div *ngIf="empManager.errors.required">Employee Manager is required.</div>
           </div>
         </div> 
-        
         <div class="form-group">
+          <label for="empType">Employee Type</label>
+          <select #empType="ngModel" [(ngModel)]="employee.empType" name="empType" id="empType" class="form-control" required>
+            <!-- <option value=""></option> -->
+            <option value="Permanent">Permanent</option>
+            <option value="Contract">Contract</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="empType.touched && empType.invalid">
+            Employee Type is Required
+          </div>
+        </div> 
+        <!-- <div class="form-group">
           <label for="empType">Employee Type</label>
           <div class="input-group">
             <input #empType="ngModel" [(ngModel)]="employee.empType" name="empType" id="empType" type="text" class="form-control" required>
@@ -42,8 +54,8 @@
           <div class="alert alert-danger" *ngIf="empType.touched && empType.invalid">
             <div *ngIf="empType.errors.required">Employee Type is required.</div>
           </div>
-        </div> 
-        <button class="btn btn-primary" [disabled]="!f.valid">Save</button>
+        </div>  -->
+        <button class="btn btn-primary" [disabled]="!f.valid">{{buttonText}}</button>&nbsp;&nbsp;
         <button type="button" (click)="back()" class="btn btn-secondary">Back</button>
       </form>    
   </div>

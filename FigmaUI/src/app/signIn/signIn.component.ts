@@ -13,6 +13,7 @@ export class SignInComponent implements OnInit {
   constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    localStorage.removeItem('token');
   }
 
   login() {
@@ -20,6 +21,7 @@ export class SignInComponent implements OnInit {
       console.log('Logged in succesfully');
       this.router.navigate(['/memberslist']);
     }, error => {
+      alert('Incorrect Username or Password');
       console.log('Failed to Login');
     });
   }

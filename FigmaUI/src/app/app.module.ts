@@ -14,6 +14,7 @@ import { MemberComponent } from './member/member.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { MembersServiceService } from './_services/membersService.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
    declarations: [
@@ -22,7 +23,8 @@ import { MembersServiceService } from './_services/membersService.service';
       HomeComponent,
       RegisterComponent,
       MemberListComponent,
-      MemberComponent
+      MemberComponent,
+      NavbarComponent
    ],
    imports: [
       BrowserModule,

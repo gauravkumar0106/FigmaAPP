@@ -1,0 +1,18 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" routerLink="/memberslist">FIGMA</a>
+    <div style="float: right;"id="navbarsExampleDefault">
+      <label style="color: white;margin-left: 30px;margin-top: 10px;">Welcome {{authService.decodeToken?.unique_name | titlecase}}</label>
+    </div>
+  
+    <div style="margin-left: 20px;">
+      <a [routerLink]="['/member/new']">Add New Employee</a>
+    </div>
+  <div style="margin-left: 700px;">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click) = "signOut()">Logout</button>
+  </div>
+    
+  
+    
+  </nav>
+  </div>

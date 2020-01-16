@@ -15,18 +15,25 @@ height: 700px;margin-left: 260px;">
   
   <h1 class="h3 mb-3 font-weight-normal" style="width: 300px;margin-left: 220px;">Please sign in</h1>
   <label for="username" class="sr-only">Username</label>
-  <input type="email" style="width: 300px;margin-left: 220px;" required [(ngModel)]="model.username" #username="ngModel" name="username" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
+  <input type="email" style="width: 300px;margin-left: 220px;" required [(ngModel)]="model.username" #username="ngModel" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus="">
+  <div class="alert alert-danger" style="width: 200px;margin-left: 220px;" *ngIf="username.touched && username.invalid">
+    <div *ngIf="username.errors.required">Username is required.</div>
+  </div>
   <br>
   <label for="inputPassword"  class="sr-only">Password</label>
-  <input type="password" style="width: 300px;margin-left: 220px;" id="inputPassword" required name="password" #password="ngModel" [(ngModel)]="model.password" class="form-control" placeholder="Password" required="">
+  <input type="password" style="width: 300px;margin-left: 220px;" id="inputPassword" required name="password" #password="ngModel" [(ngModel)]="model.password" class="form-control" placeholder="Password" required>
+  <div class="alert alert-danger" style="width: 200px;margin-left: 220px;" *ngIf="password.touched && password.invalid">
+    <div *ngIf="password.errors.required">Password is required.</div>
+  </div>
   <br>
   <div style="width: 300px;">
     <button class="btn btn-lg btn-primary btn-block" style="width: 140px;margin-left: 220px;" [disabled]="!loginForm.valid" type="submit">Sign in</button>
-    <button class="btn btn-lg btn-primary btn-block" style="width: 140px;margin-left: 220px;" type="submit" (click)="registerToggle()">Register</button>
+    
   </div>
   
 </form>
-
+<br>
+<button class="btn btn-lg btn-primary btn-block" style="width: 140px;margin-left: 220px;" type="submit" (click)="registerToggle()">Register</button>
 <div *ngIf="registerMode" class="container">
   <div class="row justify-content-center">
     <div class="col-4">
